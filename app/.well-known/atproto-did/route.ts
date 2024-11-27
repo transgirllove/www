@@ -1,6 +1,6 @@
 export async function GET(request: Request) {
     const url = new URL(request.url);
-    console.log(url?.hostname);
+    console.log(request.url);
 
     let did;
     if (url?.hostname) {
