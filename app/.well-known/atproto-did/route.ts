@@ -1,5 +1,5 @@
 export async function GET(request: Request) {
-    const url = URL.parse(request.url);
+    const url = new URL(request.url);
     console.log(url?.hostname);
 
     let did;
