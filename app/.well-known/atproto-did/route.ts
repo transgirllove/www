@@ -1,8 +1,8 @@
 import { NextRequest } from 'next/server';
 import { generateClient } from 'aws-amplify/data';
-import type { Schema } from './../../../amplify/data/resource';
+import type { Schema } from '../../../amplify/data/resource';
 import { Amplify } from 'aws-amplify';
-import outputs from './../../../amplify_outputs.json';
+import outputs from '../../../amplify_outputs.json';
 
 Amplify.configure(outputs);
 
@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     let did;
     if (username) {
         const { data: user, errors } = await client.models.User.get({
-            id: username,
+            username,
         });
         did = user?.did;
     } else {

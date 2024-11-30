@@ -12,7 +12,13 @@ const schema = a.schema({
       username: a.id().required(),
       did: a.string().required(),
     })
-    .authorization(allow => [allow.guest()]),
+    .identifier(['username'])
+    .authorization(allow => [
+      // Unauthenticated users can read all data. This is for atproto api calls.
+      allow.guest().to(['read']),
+      // Users in the 'Admin' group can perform all CRUD.
+      allow.group('Admin'),
+    ]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
